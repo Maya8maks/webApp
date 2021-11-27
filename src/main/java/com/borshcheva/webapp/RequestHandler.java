@@ -18,13 +18,17 @@ public class RequestHandler {
 
     public void handle() throws IOException {
         RequestParser requestParser = new RequestParser();
-        Request request = requestParser.parse(reader);
-
         ResourcesReader resourcesReader = new ResourcesReader();
-        String content = resourcesReader.readResource(webApp, request.getUri());
-
         ResponseWriter responseWriter = new ResponseWriter();
-        responseWriter.writeSuccessRepsonse(content, writer);
+        try {
+            Request request = requestParser.parse(reader);
+            String content = resourcesReader.readResource(webApp, request.getUri());
+            responseWriter.writeSuccessRepsonse(content, writer);
+        } catch (BadRequestExeption e) {
+           responseWriter.writeBadRequset(writer);
+        } catch(ResourceNotFoundException  e) {
+            responseWriter.writeNotFound(writer);
+        }
     }
 
 }

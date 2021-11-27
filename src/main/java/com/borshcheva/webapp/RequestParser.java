@@ -5,21 +5,27 @@ import java.io.IOException;
 import java.util.StringJoiner;
 
 public class RequestParser {
-    public Request parse(BufferedReader reader) throws IOException {
-        Request request = new Request();
-        String line = reader.readLine();
-        String uri = null;
-        String[] splitPath = line.split(" ");
-        if (splitPath != null && splitPath.length > 0) {
-            String method = splitPath[0];
-            if (method.equals(HttpMethod.GET.toString())) {
-                request.setMethod(HttpMethod.GET);
-            } else {
-                request.setMethod(HttpMethod.POST);
+    public Request parse(BufferedReader reader){
+        try {
+            Request request = new Request();
+            String line = reader.readLine();
+            System.out.println(line);
+
+            String[] splitPath = line.split(" ");
+            if (splitPath != null && splitPath.length > 0) {
+                String method = splitPath[0];
+                if (method.equals(HttpMethod.GET.toString())) {
+                    request.setMethod(HttpMethod.GET);
+                } else {
+                   throw new MethodNotAllowedExeption("Method not allowed");
+                }
+                String uri = splitPath[1];
+                System.out.println(uri);
+                request.setUri(uri);
             }
-            uri = splitPath[1];
-            request.setUri(uri);
+            return request;
+        } catch (IOException e) {
+            throw new BadRequestExeption("Cannot parse request", e);
         }
-        return request;
     }
 }
