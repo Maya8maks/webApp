@@ -1,6 +1,5 @@
 package com.borshcheva.webapp;
 
-import java.util.Map;
 
 public class Request<HttpMethod> {
     private String uri;

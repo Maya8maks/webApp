@@ -26,14 +26,18 @@ public class Server {
     }
 
     public void start() throws IOException {
-        try(ServerSocket serverSocket = new ServerSocket(port);
-            Socket socket = serverSocket.accept();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));) {
-
-            RequestHandler requestHandler = new RequestHandler(bufferedReader, bufferedWriter, webApp);
-            requestHandler.handle();
+        try (ServerSocket serverSocket = new ServerSocket(port);) {
+            while (true) {
+                try (
+                        Socket socket = serverSocket.accept();
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));) {
+                    RequestHandler requestHandler = new RequestHandler(bufferedReader, bufferedWriter, webApp);
+                    requestHandler.handle();
+                }
+            }
         }
     }
+
 
 }

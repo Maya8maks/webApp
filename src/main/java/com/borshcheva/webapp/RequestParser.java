@@ -2,14 +2,12 @@ package com.borshcheva.webapp;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.StringJoiner;
 
 public class RequestParser {
     public Request parse(BufferedReader reader){
         try {
             Request request = new Request();
             String line = reader.readLine();
-            System.out.println(line);
 
             String[] splitPath = line.split(" ");
             if (splitPath != null && splitPath.length > 0) {
@@ -20,7 +18,6 @@ public class RequestParser {
                    throw new MethodNotAllowedExeption("Method not allowed");
                 }
                 String uri = splitPath[1];
-                System.out.println(uri);
                 request.setUri(uri);
             }
             return request;

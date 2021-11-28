@@ -1,7 +1,12 @@
-.content {
-background-color: blue;
+body{
+background-color: #7fffd4;
 }
 
-body{
-color:red;
+.content {
+margin: 0 auto;
+width: 60%;
+color: blue;
+margin-top: 40px;
+text-align: center;
 }
+
