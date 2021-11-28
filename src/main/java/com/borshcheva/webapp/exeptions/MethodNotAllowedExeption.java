@@ -1,4 +1,4 @@
-package com.borshcheva.webapp;
+package com.borshcheva.webapp.exeptions;
 
 public class MethodNotAllowedExeption extends RuntimeException{
     public MethodNotAllowedExeption(String message) {

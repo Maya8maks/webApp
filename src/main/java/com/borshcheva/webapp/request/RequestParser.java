@@ -1,4 +1,9 @@
-package com.borshcheva.webapp;
+package com.borshcheva.webapp.request;
+
+import com.borshcheva.webapp.HttpMethod;
+import com.borshcheva.webapp.Request;
+import com.borshcheva.webapp.exeptions.BadRequestExeption;
+import com.borshcheva.webapp.exeptions.MethodNotAllowedExeption;
 
 import java.io.BufferedReader;
 import java.io.IOException;

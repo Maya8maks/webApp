@@ -1,5 +1,7 @@
 package com.borshcheva.webapp;
 
+import com.borshcheva.webapp.exeptions.ResourceNotFoundException;
+
 import java.io.*;
 
 public class ResourcesReader {

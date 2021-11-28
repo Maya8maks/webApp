@@ -1,4 +1,4 @@
-package com.borshcheva.webapp;
+package com.borshcheva.webapp.exeptions;
 
 public class ResourceNotFoundException extends RuntimeException{
 

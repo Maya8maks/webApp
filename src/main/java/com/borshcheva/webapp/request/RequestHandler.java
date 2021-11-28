@@ -1,4 +1,10 @@
-package com.borshcheva.webapp;
+package com.borshcheva.webapp.request;
+
+import com.borshcheva.webapp.Request;
+import com.borshcheva.webapp.ResourcesReader;
+import com.borshcheva.webapp.ResponseWriter;
+import com.borshcheva.webapp.exeptions.BadRequestExeption;
+import com.borshcheva.webapp.exeptions.ResourceNotFoundException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +16,7 @@ public class RequestHandler {
     private BufferedReader reader;
     private String webApp;
 
-    RequestHandler(BufferedReader reader, BufferedWriter writer, String webApp) {
+    public RequestHandler(BufferedReader reader, BufferedWriter writer, String webApp) {
         this.writer = writer;
         this.reader = reader;
         this.webApp = webApp;
@@ -26,7 +32,7 @@ public class RequestHandler {
             responseWriter.writeSuccessRepsonse(content, writer);
         } catch (BadRequestExeption e) {
            responseWriter.writeBadRequset(writer);
-        } catch(ResourceNotFoundException  e) {
+        } catch(ResourceNotFoundException e) {
             responseWriter.writeNotFound(writer);
         }
     }
